@@ -1,0 +1,19 @@
+<ol id="blocks">
+  <%= render partial: "pages/block", collection: @page.blocks %>
+</ol>
+
+<%= button_to "Add paragraph", page_blocks_path(@page), params: {blockable_type: "Block::Text"} %>
+<%= button_to "Add h1",
+    page_blocks_path(@page),
+    params: {
+      blockable_type: "Block::Heading",
+      blockable_attributes: {level: 1}
+    }
+%>
+<%= button_to "Add h2",
+    page_blocks_path(@page),
+    params: {
+      blockable_type: "Block::Heading",
+      blockable_attributes: {level: 2}
+    }
+%>

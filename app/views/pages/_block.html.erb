@@ -1,0 +1,9 @@
+<li>
+  <%= form_with model: [block.page, block] do |form| %>
+    <%= form.fields_for :blockable do |blockable_form| %>
+      <%= render "blocks/editable/#{block.blockable_type.underscore}", form: blockable_form %>
+    <% end %>
+
+    <%= form.submit %>
+  <% end %>
+</li>
