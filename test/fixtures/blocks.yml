@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  page: one
+  blockable: one
+  blockable_type: Blockable
+
+two:
+  page: two
+  blockable: two
+  blockable_type: Blockable
