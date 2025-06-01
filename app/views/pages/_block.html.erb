@@ -1,12 +1,13 @@
 <li>
-  <%= form_with model: [block.page, block] do |form| %>
+  <%= form_with model: [block.page, block], data: { controller: "form" } do |form| %>
     <%= form.fields_for :blockable do |blockable_form| %>
       <%= render partial: "blocks/editable/#{block.blockable_type.underscore}",
         locals: {
           form: blockable_form, base_css: "w-full field-sizing resize-none focus:outline-0",
           data: {
             controller: "resize",
-            action: "resize#now"
+            blocks_target: "field",
+            action: "resize#now form#submit keydown.enter->blocks#create:prevent"
           }
         }
       %>
