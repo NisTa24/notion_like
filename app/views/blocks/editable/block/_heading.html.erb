@@ -1,5 +1,3 @@
-<%# locals: (form:, base_css:) -%>
+<%# locals: (form:, base_css:, data: {}) -%>
 
-<%= form.text_field :level %>
-<br>
-<%= form.text_area :content, rows: 1, class: class_names(base_css, "font-bold text-gray-800", { "text-5xl": form.object.level == 1, "text-3xl": form.object.level == 2, "text-2xl": form.object.level == 3, "text-xl": form.object.level == 4 }) %>
+<%= form.text_area :content, id: dom_id(form.object, :content), data: data, rows: 1, class: class_names(base_css, "font-bold text-gray-800", { "text-5xl": form.object.level == 1, "text-3xl": form.object.level == 2, "text-2xl": form.object.level == 3, "text-xl": form.object.level == 4 }) %>

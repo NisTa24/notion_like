@@ -3,7 +3,11 @@
     <%= form.fields_for :blockable do |blockable_form| %>
       <%= render partial: "blocks/editable/#{block.blockable_type.underscore}",
         locals: {
-          form: blockable_form, base_css: "w-full field-sizing resize-none focus:outline-0"
+          form: blockable_form, base_css: "w-full field-sizing resize-none focus:outline-0",
+          data: {
+            controller: "resize",
+            action: "resize#now"
+          }
         }
       %>
     <% end %>
