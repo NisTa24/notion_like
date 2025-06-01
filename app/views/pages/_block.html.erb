@@ -7,7 +7,16 @@
           data: {
             controller: "resize",
             blocks_target: "field",
-            action: "resize#now form#submit keydown.enter->blocks#create:prevent"
+            navigation_target: "field",
+            action: "
+              resize#now
+              form#submit
+              keydown.enter->blocks#create:prevent
+              keydown.up->navigation#up
+              keydown.right->navigation#right
+              keydown.down->navigation#down
+              keydown.left->navigation#left
+            "
           }
         }
       %>

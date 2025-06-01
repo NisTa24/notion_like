@@ -1,4 +1,4 @@
-<ol id="blocks" data-controller="blocks" data-blocks-create-url-value="<%= page_blocks_path(@page) %>" class="flex flex-col mx-auto max-w-prose gap-y-4">
+<ol id="blocks" data-controller="blocks navigation" data-blocks-create-url-value="<%= page_blocks_path(@page) %>" class="flex flex-col mx-auto max-w-prose gap-y-4">
   <%= render partial: "pages/block", collection: @page.blocks %>
 </ol>
 
