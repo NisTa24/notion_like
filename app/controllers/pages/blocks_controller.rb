@@ -18,6 +18,10 @@ class Pages::BlocksController < ApplicationController
     redirect_to edit_page_path(@page)
   end
 
+  def destroy
+    Block.find(params[:id]).destroy
+  end
+
   private
 
   def set_page

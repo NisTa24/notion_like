@@ -8,6 +8,7 @@
             controller: "resize",
             blocks_target: "field",
             navigation_target: "field",
+            navigation_endpoint_param: page_block_path(block.page, block),
             action: "
               resize#now
               form#submit
@@ -16,6 +17,7 @@
               keydown.right->navigation#right
               keydown.down->navigation#down
               keydown.left->navigation#left
+              keydown.backspace->navigation#back
             "
           }
         }

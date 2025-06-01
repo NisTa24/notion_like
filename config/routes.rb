@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :pages, only: %w[show edit] do
-    resources :blocks, module: :pages, only: %w[create update]
+    resources :blocks, module: :pages, only: %w[create update destroy]
   end
 end

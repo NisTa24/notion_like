@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { destroy } from "@rails/request.js"
 
 // Connects to data-controller="navigation"
 export default class extends Controller {
@@ -26,6 +27,16 @@ export default class extends Controller {
     if (target.selectionEnd !== target.value.length) return;
 
     this.#navigateTo(event, 1, 0);
+  }
+
+  async back(event) {
+    if (event.target.value !== "") return;
+
+    this.#navigateTo(event, -1);
+
+    const response = await destroy(event.params.endpoint);
+
+    if (response.ok) event.target.closest("li").remove();
   }
 
   // private
