@@ -4,7 +4,8 @@ const customSchema = {
     ...defaultSchema,
     keyMappings: {
         ...defaultSchema.keyMappings,
-        backspace: "Backspace"
+        backspace: "Backspace",
+        slash: "/"
     }
 }
 

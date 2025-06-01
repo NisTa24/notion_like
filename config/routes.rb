@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 
   resources :pages, only: %w[show edit] do
     resources :blocks, module: :pages, only: %w[create update destroy]
+    resources :block_types, module: :pages, only: %w[update]
   end
 end

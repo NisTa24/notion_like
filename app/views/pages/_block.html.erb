@@ -1,27 +1,77 @@
-<li>
-  <%= form_with model: [block.page, block], data: { controller: "form" } do |form| %>
-    <%= form.fields_for :blockable do |blockable_form| %>
-      <%= render partial: "blocks/editable/#{block.blockable_type.underscore}",
-        locals: {
-          form: blockable_form, base_css: "w-full field-sizing resize-none focus:outline-0",
-          data: {
-            controller: "resize",
-            blocks_target: "field",
-            navigation_target: "field",
-            navigation_endpoint_param: page_block_path(block.page, block),
-            action: "
-              resize#now
-              form#submit
-              keydown.enter->blocks#create:prevent
-              keydown.up->navigation#up
-              keydown.right->navigation#right
-              keydown.down->navigation#down
-              keydown.left->navigation#left
-              keydown.backspace->navigation#back
-            "
+<li class="flex items-start gap-x-2 group/item w-full">
+  <div id="<%= dom_id(block, :item) %>" data-controller="dropdown" class="relative flex items-start gap-x-2 group/item shrink-0">
+    <button data-action="" class="text-gray-400 opacity-0 shrink-0 translate-y-1 transition group-hover/item:opacity-100 hover:text-gray-700 peer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grip-vertical"><circle cx="9" cy="12" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/></svg>
+    </button>
+
+    <ul data-dropdown-target="items" class="absolute z-10 hidden pb-1 bg-white border shadow-md bottom-top right-full rounded-md hover:block peer-hover:block">
+      <li>
+        <%= button_to "paragraph",
+          page_block_type_path(block.page, block),
+          method: :patch,
+          params: {
+            block: {
+              blockable_type: "Block::Text",
+              blockable_attributes: {id: block.blockable_type == "Block::Heading" ? block.blockable_id : nil }
+            }
+          },
+          class: "block px-2 py-1"
+        %>
+      </li>
+      <li>
+        <%= button_to "h1",
+            page_block_type_path(block.page, block),
+            method: :put,
+            params: {
+              block: {
+                blockable_type: "Block::Heading",
+                blockable_attributes: {level: 1, id: block.blockable_type == "Block::Heading" ? block.blockable_id : nil }
+              }
+            },
+            class: "block px-2 py-1"
+        %>
+      </li>
+      <li>
+        <%= button_to "h2",
+            page_block_type_path(block.page, block),
+            method: :put,
+            params: {
+              block: {
+                blockable_type: "Block::Heading",
+                blockable_attributes: {level: 2, id: block.blockable_type == "Block::Heading" ? block.blockable_id : nil }
+              }
+            },
+            class: "block px-2 py-1"
+        %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="flex-1">
+    <%= form_with model: [block.page, block], data: { controller: "form" } do |form| %>
+      <%= form.fields_for :blockable do |blockable_form| %>
+        <%= render partial: "blocks/editable/#{block.blockable_type.underscore}",
+          locals: {
+            form: blockable_form, base_css: "w-full field-sizing resize-none focus:outline-0",
+            data: {
+              controller: "resize",
+              blocks_target: "field",
+              navigation_target: "field",
+              navigation_endpoint_param: page_block_path(block.page, block),
+              action: "
+                resize#now
+                form#submit
+                keydown.enter->blocks#create:prevent
+                keydown.up->navigation#up
+                keydown.right->navigation#right
+                keydown.down->navigation#down
+                keydown.left->navigation#left
+                keydown.backspace->navigation#back
+              "
+            }
           }
-        }
-      %>
+        %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </li>
