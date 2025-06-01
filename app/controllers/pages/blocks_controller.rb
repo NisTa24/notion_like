@@ -1,12 +1,15 @@
 class Pages::BlocksController < ApplicationController
-  before_action :set_page, only: %w[create update]
+  before_action :set_page, only: %w[create]
 
   def create
-    @page.blocks.create!(
+    @block = @page.blocks.create!(
       blockable: params[:blockable_type].constantize.new(new_block_params)
     )
 
-    redirect_to edit_page_path(@page)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to edit_page_path(@page) }
+    end
   end
 
   def update

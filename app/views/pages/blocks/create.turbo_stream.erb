@@ -1,0 +1,8 @@
+<%= turbo_stream.append "blocks" do %>
+  <%= render partial: "pages/block", locals: { block: @block } %>
+
+  <template
+    data-controller="focus"
+    data-focus-selector-value="#<%= dom_id(@block.blockable, :content) %>"
+  ></template>
+<% end %>
