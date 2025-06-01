@@ -1,9 +1,11 @@
 <li>
   <%= form_with model: [block.page, block] do |form| %>
     <%= form.fields_for :blockable do |blockable_form| %>
-      <%= render "blocks/editable/#{block.blockable_type.underscore}", form: blockable_form %>
+      <%= render partial: "blocks/editable/#{block.blockable_type.underscore}",
+        locals: {
+          form: blockable_form, base_css: "w-full field-sizing resize-none focus:outline-0"
+        }
+      %>
     <% end %>
-
-    <%= form.submit %>
   <% end %>
 </li>

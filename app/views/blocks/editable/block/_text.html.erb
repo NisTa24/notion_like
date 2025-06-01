@@ -1,1 +1,3 @@
-<%= form.text_area :content %>
+<%# locals: (form:, base_css:) -%>
+
+<%= form.text_area :content, rows: 1, class: class_names(base_css, "text-lg font-gray-900") %>

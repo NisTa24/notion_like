@@ -1,8 +1,8 @@
-<ol id="blocks">
+<ol id="blocks" class="flex flex-col mx-auto max-w-prose gap-y-4">
   <%= render partial: "pages/block", collection: @page.blocks %>
 </ol>
 
-<%= button_to "Add paragraph", page_blocks_path(@page), params: {blockable_type: "Block::Text"} %>
+<%= button_to "Add text field", page_blocks_path(@page), params: {blockable_type: "Block::Text"} %>
 <%= button_to "Add h1",
     page_blocks_path(@page),
     params: {
