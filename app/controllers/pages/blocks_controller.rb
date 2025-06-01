@@ -1,5 +1,5 @@
 class Pages::BlocksController < ApplicationController
-  before_action :set_page, only: %w[create]
+  before_action :set_page, only: %w[create update]
 
   def create
     @block = @page.blocks.create!(
